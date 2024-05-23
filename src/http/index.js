@@ -1,10 +1,12 @@
-import axios from 'axios'
+import axios from "axios";
+
 const API = axios.create({
-    baseUrl : "https://react30.onrender.com/api/user/",
+    baseURL : 'https://react30.onrender.com/api/user/',
     headers : {
-        "Content-Type" : "application/json",
-        Authorization : localStorage.getItem("token"),
-        Accept : "application/json"
+        'Content-Type' : 'application/json',
+        Accept : 'application/json',
+        "Authorization" : localStorage.getItem('token')
     }
+
 })
 export default API

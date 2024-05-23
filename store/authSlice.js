@@ -21,7 +21,7 @@ const authSlice = createSlice({
         }
     }
 })
-export const {setToken, setUser, setStatus} =  authSlice.actions
+export const {setToken, setUser, setStatus} =  authSlice.actions;
 export default authSlice.reducer
 
     
@@ -29,10 +29,12 @@ export function register(data){
     return async function registerThunk(dispatch){
         dispatch(setStatus(STATUSES.LOADING))
         try {
-           const response =  await API.post('/register',data)
+           const response =  await API.post('register',data)
            if(response.status === 201){
             dispatch(setUser(data))
                dispatch(setStatus(STATUSES.SUCCESS))
+           }else{
+            dispatch(setStatus(STATUSES.ERROR))
            }
         }catch(error){
             dispatch(setStatus(STATUSES.ERROR))
