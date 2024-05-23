@@ -8,7 +8,7 @@ import { useEffect } from "react"
 import STATUSES from "../../global/statuses/statuses"
 
 const Login = () => {
-  const {status} = useSelector((state)=> state.auth)
+  const {status,user} = useSelector((state)=> state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const loginSubmit = (data)=>{
@@ -26,7 +26,7 @@ const Login = () => {
     <>
     <div>
     <Background/>
-    <Form type="Login" onSubmit={loginSubmit} />
+    <Form type="Login" user={user} onSubmit={loginSubmit} />
     </div>
 
     </>

@@ -3,7 +3,8 @@
 import { Link } from 'react-router-dom'
 import './Form.css'
 import { useState } from 'react'
-const Form = ({type, onSubmit}) => {
+const Form = ({type, onSubmit, user}) => {
+
   const [data, setData] = useState({
     username: '',
     email: '',
@@ -29,6 +30,7 @@ onSubmit(data)
     <div className='flex justify-center items-center mt-32'>
             <form onSubmit={handleSubmit} className="form mt-10 w-[40%] items-center justify-center ">
               <h1 className='header-text'>Book Store System</h1>
+            <span className='text-xl font-poppins text-[#f2f2f2]'> Hello,<span className='text-[#42ff1c] text-xl italic'>{type === "Login" && ` ${user?.username}`}</span> </span>
   {
     type === 'Register' && (
         <div className="group ">
