@@ -43,3 +43,21 @@ export function register(data){
     }
 
 }
+export function login(data){
+    return async function loginThunk(dispatch){
+        dispatch(setStatus(STATUSES.LOADING))
+        try{
+         const response =  await API.post('login',data)
+         if(response.status === 200 && response.data.token){
+dispatch(setToken(response.data.token))  
+dispatch(setStatus(STATUSES.SUCCESS))
+         }
+else{
+    dispatch(setStatus(STATUSES.ERROR))
+}
+       }catch(error){
+        dispatch(setStatus(STATUSES.ERROR))
+       }
+
+        }
+    }
