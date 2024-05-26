@@ -70,12 +70,19 @@ const Navbar = () => {
                 </div>
               </div>
             </li>
-            <li className="flex">
-              <button className="bg-transparent flex space-x-2 hover:bg-[#42ff1c] text-[#42ff1c] font-semibold hover:text-black py-2 px-4 border border-[#42ff1c] hover:border-transparent rounded">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.5rem" viewBox="0 0 24 24">
-                  <path fill="white" d="M10 11H2.048c.502-5.053 4.765-9 9.95-9c5.523 0 10 4.477 10 10s-4.477 10-10 10c-5.185 0-9.448-3.947-9.95-9h7.95v3l5-4l-5-4z" />
-                </svg> <span>Login</span>
-              </button>
+            <li className="flex ">
+            <button className="relative bg-transparent flex items-center space-x-2 text-[#42ff1c] font-semibold py-2 px-4 border border-[#42ff1c] rounded overflow-hidden group">
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 z-50" viewBox="0 0 24 24">
+    <path fill="white" d="M10 11H2.048c.502-5.053 4.765-9 9.95-9c5.523 0 10 4.477 10 10s-4.477 10-10 10c-5.185 0-9.448-3.947-9.95-9h7.95v3l5-4l-5-4z" />
+  </svg> 
+  <span className="group-hover:text-white z-50">Login</span>
+  <span className="absolute top-0 left-0 w-0 h-full bg-[#42ff1c] rounded transition-all duration-300 origin-left group-hover:w-full"></span>
+</button>
+
+
+
+
+
             </li>
           </ul>
         </div>

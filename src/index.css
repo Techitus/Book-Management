@@ -2,5 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+  /* Custom CSS for login button*/
+@layer utilities {
+    .group:hover .group-hover\:w-full {
+        --tw-text-opacity: 1;
+        color: rgba(255, 255, 255, var(--tw-text-opacity));      
+    }
+  }
   
+  /* Custom CSS */
+
   
