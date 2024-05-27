@@ -1,25 +1,31 @@
+/* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/no-unknown-property */
-const Navbar = () => {
+const Navbar = ({ openForm }) => {
+  
+  
+
   return (
-    <>
-      <nav className="flex justify-between sticky top-0 px-20 py-10 items-center h-full w-full bg-black border border-gray-100 z-50">
-        <h1 className="text-xl text-white font-bold">BMS</h1>
-        <div className="flex items-center">
-          <div className="w-6 h-6 mr-6 cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1.7rem" height="1.7rem" viewBox="0 0 48 48">
-              <g fill="none" stroke="#42ff1c" stroke-linejoin="round" stroke-width="4">
-                <path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z" />
-                <path stroke-linecap="round" d="M24 16v16m-8-8h16" />
-              </g>
-            </svg>
-          </div>
-          <div className="relative">
-            <input
-              className="appearance-none border-2 pl-10 border-gray-300 hover:border-gray-400 transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-[#42ff1c] focus:border-[#42ff1c] focus:shadow-outline"
-              id="username"
-              type="text"
-              placeholder="Search..."
-            />
+      <>
+          <nav className="flex justify-between sticky top-0 px-20 py-10 items-center h-full w-full bg-black border border-gray-100 z-50">
+              <h1 className="text-xl text-white font-bold sm:ml-0">BMS</h1>
+              <div className="flex items-center">
+                  <button type="button" onClick={ openForm }  className="w-6 h-6 mr-6 cursor-pointer">
+                      <svg   xmlns="http://www.w3.org/2000/svg" width="1.7rem" height="1.7rem" viewBox="0 0 48 48">
+                          <g fill="none" stroke="#42ff1c" stroke-linejoin="round" stroke-width="4">
+                              <path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z" />
+                              <path stroke-linecap="round" d="M24 16v16m-8-8h16" />
+                          </g>
+                      </svg>
+                  </button>
+                  <div className="relative sm:hidden md:block">
+                      <input
+                          className="appearance-none border-2 pl-10 border-gray-300 hover:border-gray-400 transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-[#42ff1c] focus:border-[#42ff1c] focus:shadow-outline"
+                          id="username"
+                          type="text"
+                          placeholder="Search..."
+                      />
             <div className="absolute right-0 inset-y-0 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -54,11 +60,11 @@ const Navbar = () => {
             </div>
           </div>
           <ul className="flex items-center space-x-10 cursor-pointer mb-1">
-            <li className="cursor-pointer ml-5">
+            <Link to={'/'} className="cursor-pointer ml-5">
               <svg xmlns="http://www.w3.org/2000/svg" width="1.9rem" height="1.9rem" viewBox="0 0 24 24">
                 <path fill="white" d="m21.743 12.331l-9-10c-.379-.422-1.107-.422-1.486 0l-9 10a.998.998 0 0 0-.17 1.076c.16.361.518.593.913.593h2v7a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1-1h3a1 1 0 0 0 1-1v-7h2a.998.998 0 0 0 .743-1.669" />
               </svg>
-            </li>
+            </Link>
             <li>
               <div className="relative">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.9rem" height="1.9rem" viewBox="0 0 24 24">
@@ -70,20 +76,22 @@ const Navbar = () => {
                 </div>
               </div>
             </li>
+            
+              
             <li className="flex ">
-            <button className="relative bg-transparent flex items-center space-x-2 text-[#42ff1c] font-semibold py-2 px-4 border border-[#42ff1c] rounded overflow-hidden group">
+            <Link to={'/login'} className="relative bg-transparent flex items-center space-x-2 text-[#42ff1c] font-semibold py-2 px-4 border border-[#42ff1c] rounded overflow-hidden group">
   <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 z-50" viewBox="0 0 24 24">
     <path fill="white" d="M10 11H2.048c.502-5.053 4.765-9 9.95-9c5.523 0 10 4.477 10 10s-4.477 10-10 10c-5.185 0-9.448-3.947-9.95-9h7.95v3l5-4l-5-4z" />
   </svg> 
   <span className="group-hover:text-white z-50">Login</span>
   <span className="absolute top-0 left-0 w-0 h-full bg-[#42ff1c] rounded transition-all duration-300 origin-left group-hover:w-full"></span>
-</button>
-
-
-
+</Link>
+           
 
 
             </li>
+         
+
           </ul>
         </div>
       </nav>
