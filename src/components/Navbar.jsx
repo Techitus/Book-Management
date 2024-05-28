@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/no-unknown-property */
-const Navbar = ({ openForm }) => {
+const Navbar = ({openForm}) => {
   
   
 
@@ -11,14 +11,14 @@ const Navbar = ({ openForm }) => {
           <nav className="flex justify-between sticky top-0 px-20 py-10 items-center h-full w-full bg-black border border-gray-100 z-50">
               <h1 className="text-xl text-white font-bold sm:ml-0">BMS</h1>
               <div className="flex items-center">
-                  <button type="button" onClick={ openForm }  className="w-6 h-6 mr-6 cursor-pointer">
+                  <Link to={'/blog/add'} onClick={openForm}    className="hover:opacity-70 w-6 h-6 mr-6 cursor-pointer">
                       <svg   xmlns="http://www.w3.org/2000/svg" width="1.7rem" height="1.7rem" viewBox="0 0 48 48">
                           <g fill="none" stroke="#42ff1c" stroke-linejoin="round" stroke-width="4">
                               <path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z" />
                               <path stroke-linecap="round" d="M24 16v16m-8-8h16" />
                           </g>
                       </svg>
-                  </button>
+                  </Link>
                   <div className="relative sm:hidden md:block">
                       <input
                           className="appearance-none border-2 pl-10 border-gray-300 hover:border-gray-400 transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-[#42ff1c] focus:border-[#42ff1c] focus:shadow-outline"
