@@ -41,3 +41,20 @@ export function createBlog(data){
      }
     }
 }
+export function fetchBlog(){
+    return async function fetchBlogThunk(dispatch){
+     dispatch(setStatus(STATUSES.LOADING)) 
+     try {
+        const response =   await API.get('blog')
+        if(response.status === 200 && response.data.data.length > 0){
+            dispatch(setInputData(response.data.data))
+            dispatch(setStatus(STATUSES.SUCCESS))
+        }else{
+            dispatch(setStatus(STATUSES.ERROR))
+        }
+     } catch(error){
+        dispatch(setStatus(STATUSES.ERROR))
+     }
+    }
+}
+ 

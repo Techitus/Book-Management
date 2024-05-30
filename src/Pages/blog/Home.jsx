@@ -1,10 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/no-unknown-property */
 
+import { useDispatch, useSelector } from "react-redux"
 import Card from "../../components/Card"
 import Navbar from "../../components/Navbar"
+import { useEffect } from "react"
+import { fetchBlog } from "../../../store/blogSlice"
 
 const Home = () => {
+  const dispatch = useDispatch()
+  const {inputData} = useSelector((state)=> state.blog)
+  useEffect(()=>{
+   dispatch(fetchBlog())
+  },[])
   return (
 <>
 <Navbar/>
@@ -13,22 +22,12 @@ const Home = () => {
 <h1 className="text-white">All Collector's Books</h1>
 </div>
 <div className="flex justify-between flex-wrap mt-6 mx-10">
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
+
+{
+  inputData && inputData.map((data)=>{
+    return <Card key = {data.id} data = {data} />
+  })
+}
 
 </div>
 
