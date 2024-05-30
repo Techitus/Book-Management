@@ -7,6 +7,7 @@ import store from '../store/store'
 import { Provider } from 'react-redux'
 import Home from './Pages/blog/Home'
 import AddBlog from './Pages/blog/AddBlog'
+import SingleBlog from './Pages/blog/SingleBlog'
 
 function App() {
   
@@ -20,6 +21,7 @@ function App() {
       <Route path='/register' element={<Register/>}/>
       <Route path='/' element={<Home/>}/>
       <Route path = '/blog/add' element={<AddBlog/>}/>
+      <Route path = '/blog/single' element={<SingleBlog/>}/>
     </Routes>
     </BrowserRouter>
     </Provider>

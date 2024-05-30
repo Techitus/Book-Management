@@ -1,12 +1,40 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Home from "./Home";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createBlog } from "../../../store/blogSlice";
 const AddBlog = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+ const[data,setData] = useState({
+  title: "",
+  subtitle:"",
+  description:"",
+  category:"",
+  image:""
+ })
+ const handleChange = (e)=>{
+  const {name,value}= e.target
+setData({
+  ...data,
+  [name] : name === 'image' ? e.target.files[0] : value
+})  
+ }
+ const handleSubmit = (e)=>{
+  e.preventDefault()
+  dispatch(createBlog(data))
+navigate('/')
+ }
+
+
   return (
     <>
       <Home />
 
       <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 ">
+      <form onSubmit={handleSubmit} action="">
         <div className="">
           <div className="relative py-3 sm:max-w-xl sm:mx-auto">
             <div className="relative px-4 py-10 h-full w-full bg-brown-800  bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-60 border border-[#42ff1c] mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
@@ -48,6 +76,7 @@ const AddBlog = () => {
                         type="text"
                         className="px-4 py-2 border bg-[#f2f2f2]  focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-900"
                         placeholder="Book title"
+                        onChange={handleChange}
                       />
                     </div>
                    
@@ -59,6 +88,8 @@ const AddBlog = () => {
                             type="text"
                             className="pr-4 pl-10 bg-[#f2f2f2] py-2 border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-900"
                             placeholder="Subtitle"
+                            onChange={handleChange}
+
                           />
                          
                         </div>
@@ -70,6 +101,8 @@ const AddBlog = () => {
                             type="text"
                             className="pr-4 pl-10 py-2 bg-[#f2f2f2] border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-900"
                             placeholder="Category"
+                            onChange={handleChange}
+
                           />
                         </div>
                       </div>
@@ -80,6 +113,8 @@ const AddBlog = () => {
                         type="text"
                         className="px-4 py-2 border bg-[#f2f2f2] focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                         placeholder="Book description"
+                        onChange={handleChange}
+
                       />
                     </div>
                   </div>
@@ -110,6 +145,7 @@ const AddBlog = () => {
             </div>
           </div>
         </div>
+        </form>
       </div>
     </>
   );
