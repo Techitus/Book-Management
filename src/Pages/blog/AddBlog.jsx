@@ -8,26 +8,28 @@ import { createBlog } from "../../../store/blogSlice";
 const AddBlog = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
- const[data,setData] = useState({
-  title: "",
-  subtitle:"",
-  description:"",
-  category:"",
-  image:""
- })
- const handleChange = (e)=>{
-  const {name,value}= e.target
-setData({
-  ...data,
-  [name] : name === 'image' ? e.target.files[0] : value
-})  
- }
- const handleSubmit = (e)=>{
-  e.preventDefault()
-  dispatch(createBlog(data))
-navigate('/')
- }
+  const [data,setData] = useState({
+    title: '',
+    descripton : '',
+    image : '',
+    subtitle : '',
+    category : ''
+  })
+const handleChange = (e)=>{
 
+  const {name, value} = e.target
+  setData({
+    ...data,
+    [name] : name === 'image'? e.target.files[0] :value
+  })
+
+}
+//create Blog
+const handleSubmit = (e)=>{
+  e.preventDefault()
+dispatch(createBlog(data))
+  navigate('/')
+}
 
   return (
     <>
