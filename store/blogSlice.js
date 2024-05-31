@@ -6,7 +6,8 @@ const blogSlice = createSlice({
     name : 'blog',
     initialState : {
         inputData : null,
-        status : null
+        status : null,
+        deleteStatus : null
 
     },
     reducers : {
@@ -15,12 +16,15 @@ const blogSlice = createSlice({
         },
         setStatus(state,action){
             state.status = action.payload
+        },
+        setDeleteStatus(state,action){
+            state.deleteStatus = action.payload
         }
     }
     
 })
 
-export const {setInputData,setStatus} = blogSlice.actions
+export const {setInputData,setStatus, setDeleteStatus} = blogSlice.actions
 
 
 
@@ -75,3 +79,22 @@ export function fetchSingleBlog(id){
         }
     }
 }
+
+export function deleteBLog(id){
+    return async function deleteBlogThunk(dispatch){
+        dispatch(setStatus(STATUSES.LOADING))
+        try{
+           const response = await API.delete(`blog/${id}`)
+           if(response.status === 200){
+            dispatch(setDeleteStatus(true))
+           
+        }else{
+            dispatch(setDeleteStatus(null))
+           }
+        }catch(error){
+            dispatch(setDeleteStatus(false))
+        }
+    }
+
+}
+

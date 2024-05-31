@@ -5,6 +5,7 @@ import Home from "./Home";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createBlog } from "../../../store/blogSlice";
+import Swal from "sweetalert2";
 const AddBlog = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -28,6 +29,13 @@ const handleChange = (e)=>{
 const handleSubmit = (e)=>{
   e.preventDefault()
 dispatch(createBlog(data))
+Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Blog Add Sucessfully",
+  showConfirmButton: false,
+  timer: 3000
+});
   navigate('/')
 }
 

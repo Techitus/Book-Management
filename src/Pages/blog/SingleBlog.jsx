@@ -1,26 +1,48 @@
+/* eslint-disable no-undef */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unknown-property */
-
+import Swal from "sweetalert2";
 import {  useEffect, useState } from "react";
-
 // import { Link } from "react-router-dom"
 import { FaStar } from 'react-icons/fa';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleBlog } from "../../../store/blogSlice";
-import { useParams } from "react-router-dom";
+import { deleteBLog, fetchSingleBlog, setDeleteStatus } from "../../../store/blogSlice";
+import { useNavigate, useParams } from "react-router-dom";
 const SingleBlog = () => {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
     const dispatch = useDispatch()
     const {id} = useParams()
-   
-    const {inputData} = useSelector((state)=>state.blog)
+   const navigate = useNavigate()
+    const {inputData,deleteStatus} = useSelector((state)=>state.blog)
     console.log(inputData.title)
     useEffect(()=>{
       dispatch(fetchSingleBlog(id))
       
     },[])
-
+        const handleDelete = ()=>{
+          dispatch(deleteBLog(id))
+        
+        }
+        useEffect(()=>{
+          if(deleteStatus === true){
+            setDeleteStatus(null)
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Blog Deleted Sucessfully",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            navigate('/')}
+        else{
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You are not a author!",
+          });
+        }
+      },[deleteStatus])
   return (
 <>
 <div className="container mx-auto px-4 py-32 ">
@@ -52,7 +74,7 @@ const SingleBlog = () => {
         </div>
         <div className="flex items-center justify-end space-x-4">
           <button className="text-white bg-blue-500 hover:bg-blue-700 font-semibold px-4 py-2 rounded-lg transition-colors duration-300">Edit</button>
-          <button className="text-white bg-red-500 hover:bg-red-700 font-semibold px-4 py-2 rounded-lg transition-colors duration-300">Delete</button>
+          <button onClick={handleDelete} className="text-white bg-red-500 hover:bg-red-700 font-semibold px-4 py-2 rounded-lg transition-colors duration-300">Delete</button>
         </div>
       </div>
     </div>
