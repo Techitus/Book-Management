@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 
+import { Link } from "react-router-dom"
+
 const Card = ({data}) => {
   return (
 <>
@@ -45,10 +47,10 @@ const Card = ({data}) => {
 			</path>
 		</svg>
 	</div>
-        <button className="className=relative bg-transparent flex items-center space-x-2 text-[#42ff1c] font-semibold py-2 px-4 border border-[#42ff1c] rounded overflow-hidden group">
+        <Link to={`/blog/${data._id}`} className="className=relative bg-transparent flex items-center space-x-2 text-[#42ff1c] font-semibold py-2 px-4 border border-[#42ff1c] rounded overflow-hidden group">
         <span className="group-hover:text-white z-50">Read More</span>
   <span className="absolute top-0 -left-2 w-0 h-full bg-[#42ff1c] rounded transition-all duration-300 origin-left group-hover:w-full"></span>
-        </button>
+        </Link>
       </div>
     </div>
   </div>

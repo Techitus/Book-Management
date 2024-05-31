@@ -1,24 +1,37 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unknown-property */
 
-import { useState } from "react";
+import {  useEffect, useState } from "react";
 
 // import { Link } from "react-router-dom"
 import { FaStar } from 'react-icons/fa';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSingleBlog } from "../../../store/blogSlice";
+import { useParams } from "react-router-dom";
 const SingleBlog = () => {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
+    const dispatch = useDispatch()
+    const {id} = useParams()
+   
+    const {inputData} = useSelector((state)=>state.blog)
+    console.log(inputData.title)
+    useEffect(()=>{
+      dispatch(fetchSingleBlog(id))
+      
+    },[])
+
   return (
 <>
 <div className="container mx-auto px-4 py-32 ">
 <div className="max-w-lg mx-auto bg-white rounded-xl shadow-lg overflow-hidden fade-in-up hover-zoom border border-[#42ff1c]">
-      <img src="https://via.placeholder.com/400x200" alt="Blog Image" className="w-full h-48 object-cover transition-transform duration-300" />
+      <img src={inputData?.imageUrl} alt="Blog Image" className="w-full h-48 object-cover transition-transform duration-300" />
       <div className="p-6">
-        <span className="inline-block bg-blue-100 text-black rounded-full px-3 py-1 text-sm font-medium mb-2">Category</span>
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">Blog Title</h2>
-        <h3 className="text-xl text-gray-600 mb-4">Blog Subtitle</h3>
+        <span className="inline-block bg-blue-100 text-black rounded-full px-3 py-1 text-sm font-medium mb-2">{inputData?.category}</span>
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">{inputData?.title}</h2>
+        <h3 className="text-xl text-gray-600 mb-4">{inputData?.subtitle}</h3>
         <p className="text-gray-700 mb-6">
-          This is a brief description of the blog post. It provides an overview of the content and entices readers to read more.
-        </p>
+{inputData?.descripton}        </p>
         <div className="flex items-center mb-4">
           <span className="mr-2">Rating:</span>
           <div className="flex space-x-1 text-yellow-500">

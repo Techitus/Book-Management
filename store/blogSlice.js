@@ -58,3 +58,20 @@ export function fetchBlog(){
     }
 }
  
+export function fetchSingleBlog(id){
+    return async function fetchSingleBlogThunk(dispatch){
+        dispatch(setStatus(STATUSES.LOADING))
+        try {
+            const response = await API.get(`blog/${id}`)
+            if(response.status === 200){
+                dispatch(setInputData(response.data.data))
+                dispatch(setStatus(STATUSES.SUCCESS))
+            }else{
+                dispatch(setStatus(STATUSES.ERROR))
+            }
+
+        }catch(error){
+            dispatch(setStatus(STATUSES.ERROR))
+        }
+    }
+}
