@@ -11,6 +11,7 @@ import { fetchBlog } from "../../../store/blogSlice"
 const Home = () => {
   const dispatch = useDispatch()
   const {inputData} = useSelector((state)=> state.blog)
+  console.log(inputData)
   useEffect(()=>{
    dispatch(fetchBlog())
   },[])
