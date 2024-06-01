@@ -5,9 +5,10 @@ import API from "../src/http";
 const blogSlice = createSlice({
     name : 'blog',
     initialState : {
-        inputData : null,
+        inputData :[],
         status : null,
-        deleteStatus : null
+        deleteStatus : null,
+        editStatus : null
 
     },
     reducers : {
@@ -19,12 +20,15 @@ const blogSlice = createSlice({
         },
         setDeleteStatus(state,action){
             state.deleteStatus = action.payload
+        },
+        setEditStatus(state,action){
+            state.editStatus = action.payload
         }
     }
     
 })
 
-export const {setInputData,setStatus, setDeleteStatus} = blogSlice.actions
+export const {setInputData,setStatus, setDeleteStatus,setEditStatus} = blogSlice.actions
 
 
 
@@ -98,3 +102,19 @@ export function deleteBLog(id){
 
 }
 
+export function editBlog(id,data){
+    return async function editBlogThunk(dispatch){
+        dispatch(setStatus(STATUSES.LOADING) )
+        try {
+            const response = await API.patch(`blog/${id}`,data)
+            if (response.status === 200){
+                dispatch(setEditStatus(true))
+            }
+            else{
+                dispatch(setEditStatus(null))
+            }
+        }catch(error){
+            dispatch(setStatus(STATUSES.ERROR))
+        }
+    }
+}

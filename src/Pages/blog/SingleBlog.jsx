@@ -7,7 +7,7 @@ import {  useEffect, useState } from "react";
 import { FaStar } from 'react-icons/fa';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteBLog, fetchSingleBlog, setDeleteStatus } from "../../../store/blogSlice";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 const SingleBlog = () => {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
@@ -25,6 +25,7 @@ const SingleBlog = () => {
         
         }
         useEffect(()=>{
+          try{
           if(deleteStatus === true){
             setDeleteStatus(null)
             Swal.fire({
@@ -36,12 +37,16 @@ const SingleBlog = () => {
             });
             navigate('/')}
         else{
+         setDeleteStatus(null)
+        }}catch(error){
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "You are not a author!",
           });
+
         }
+        
       },[deleteStatus])
   return (
 <>
@@ -73,7 +78,7 @@ const SingleBlog = () => {
           </div>
         </div>
         <div className="flex items-center justify-end space-x-4">
-          <button className="text-white bg-blue-500 hover:bg-blue-700 font-semibold px-4 py-2 rounded-lg transition-colors duration-300">Edit</button>
+          <Link to={`/blog/edit/${id}`} className="text-white bg-blue-500 hover:bg-blue-700 font-semibold px-4 py-2 rounded-lg transition-colors duration-300">Edit</Link>
           <button onClick={handleDelete} className="text-white bg-red-500 hover:bg-red-700 font-semibold px-4 py-2 rounded-lg transition-colors duration-300">Delete</button>
         </div>
       </div>

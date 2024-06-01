@@ -10,8 +10,8 @@ import { fetchBlog } from "../../../store/blogSlice"
 
 const Home = () => {
   const dispatch = useDispatch()
-  const {inputData} = useSelector((state)=> state.blog)
-  useEffect(()=>{
+  const { inputData } = useSelector((state) => state.blog);
+    useEffect(()=>{
    dispatch(fetchBlog())
   },[])
   return (
@@ -21,11 +21,10 @@ const Home = () => {
 <svg xmlns="http://www.w3.org/2000/svg" width="1.8rem" height="1.8rem" viewBox="0 0 64 64"><path fill="#ffce31" d="M62 25.2H39.1L32 3l-7.1 22.2H2l18.5 13.7l-7 22.1L32 47.3L50.5 61l-7.1-22.2z"/></svg>
 <h1 className="text-white">All Collector's Books</h1>
 </div>
-<div className="flex justify-between flex-wrap mt-6 mx-10">
+<div className="flex justify-between flex-wrap mt-6 mx-10 ">
 
-{
-  inputData && inputData.map((data)=>{
-    return <Card key = {data.id} data = {data} />
+{Array.isArray(inputData) && inputData.map((data)=>{
+    return <Card key = {data.id} data ={data} />
   })
 }
 

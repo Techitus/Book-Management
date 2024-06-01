@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import Home from './Pages/blog/Home'
 import AddBlog from './Pages/blog/AddBlog'
 import SingleBlog from './Pages/blog/SingleBlog'
+import EditBlog from './Pages/blog/EditBlog'
 
 function App() {
   
@@ -22,6 +23,7 @@ function App() {
       <Route path='/' element={<Home/>}/>
       <Route path = '/blog/add' element={<AddBlog/>}/>
       <Route path = '/blog/:id' element={<SingleBlog/>}/>
+      <Route path = '/blog/edit/:id' element={<EditBlog/>}/>
     </Routes>
     </BrowserRouter>
     </Provider>
