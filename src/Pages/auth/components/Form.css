@@ -28,14 +28,13 @@
     font-size: 24px;
     font-weight: bold;
     letter-spacing: .5px;
-    color: white;
   }
   
-  .container-1 {
+  .container-1{
     padding-top: 30px;
   }
   
-  .main-input {
+  .main-input{
     font-size: 16px;
     padding: 10px 10px 10px 5px;
     display: block;
@@ -44,14 +43,16 @@
     border-bottom: 1px solid #6c6c6c;
     background: transparent;
     color: #ffffff;
-  }
+   } 
   
+   
   .main-input:focus {
     outline: none;
     border-bottom-color: #42ff1c;
   }
   
-  .lebal-email {
+  
+  .label-input{
     color: #999999;
     font-size: 18px;
     font-weight: normal;
@@ -64,8 +65,8 @@
     -webkit-transition: 0.2s ease all;
   }
   
-  .main-input:focus ~ .lebal-email,
-  .main-input:valid ~ .lebal-email {
+  .main-input:focus ~ .label-input,
+  .main-input:valid ~ .label-input {
     top: -20px;
     font-size: 14px;
     color: #42ff1c;
@@ -81,7 +82,7 @@
     opacity: 0.5;
   }
   
-  .main-input:focus ~ .highlight-span {
+  .main-input:focus ~ .highlight-span  {
     -webkit-animation: input-focus 0.3s ease;
     animation: input-focus 0.3s ease;
   }
@@ -90,15 +91,14 @@
     from {
       background: #42ff1c;
     }
-  
     to {
       width: 185px;
     }
   }
-  .group {
+  
+  .group{
     position: relative;
   }
-  
   
   .submit {
     margin-top: 1.2rem;

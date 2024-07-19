@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
@@ -31,31 +32,35 @@ onSubmit(data)
             <form onSubmit={handleSubmit} className="form mt-10 w-[40%] items-center justify-center ">
               <h1 className='header-text'>Book Store System</h1>
             <span className='text-xl font-poppins text-[#f2f2f2]'> Hello,<span className='text-[#42ff1c] text-xl italic'>{type === "Login" && ` ${user?.username}`}</span> </span>
-  {
-    type === 'Register' && (
-        <div className="group ">
-    <input required="true" name="username" className="main-input" type="text" onChange={handleChange }/>
-    <span className="highlight-span"></span>
-    <label className="lebal-email">Name</label> 
-  </div>
-    )
-  }
+            {
+      type === 'Register' && (
+        <div className="container-1">
+          <div className="group">
+            <input type='text' required name='name' className="main-input"  onChange={handleChange}/>
+            <span className="highlight-span"></span>
+            <label className="label-input">Name</label>
+            
+          </div>
+        </div>  
+      )
+    }
 
-  <div className="container-1">
-  <div className="group ">
-    <input required="true" name='email' className="main-input" type="email" onChange={handleChange}/>
-    <span className="highlight-span"></span>
-    <label className="lebal-email">Email</label>
-  </div>
-  </div>  
-  <div className="container-1">
-    <div className="group">
-      <input required="true" name='password' className="main-input" type="password" onChange={handleChange}/>
-      <span className="highlight-span"></span>
-      <label className="lebal-email">password</label>
+    <div className="container-1">
+      <div className="group">
+        <input type='email' required name='name' className="main-input "  onChange={handleChange}/>
+        <span className="highlight-span"></span>
+        <label className="label-input">Email</label>
+      </div>
     </div>
-    
-  </div>
+
+    <div className="container-1">
+      <div className="group" >
+        <input type='password' required name='name' className="main-input"   onChange={handleChange}/>
+        <span className="highlight-span"></span>
+        <label className="label-input">Password</label>
+      </div>
+    </div>
+  
   {
     type === 'Register' ? (
       <span className='text-gray-400  font-normal mt-8 text-[14px]'>Already have an account? <Link className='text-[#42ff1c] font-bold' to="/login">Login Here</Link></span>
