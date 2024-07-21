@@ -25,6 +25,7 @@ const Home = () => {
 
 {Array.isArray(inputData) && inputData.map((data)=>{
     return <Card key = {data.id} data ={data} />
+    
   })
 }
 

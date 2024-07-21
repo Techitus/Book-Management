@@ -53,7 +53,7 @@ export function fetchBlog(){
     return async function fetchBlogThunk(dispatch){
      dispatch(setStatus(STATUSES.LOADING)) 
      try {
-        const response =   await API.get('blog')
+        const response =   await API.get('http://localhost:3000/book/')
         if(response.status === 200 && response.data.data.length > 0){
             dispatch(setInputData(response.data.data))
             dispatch(setStatus(STATUSES.SUCCESS))

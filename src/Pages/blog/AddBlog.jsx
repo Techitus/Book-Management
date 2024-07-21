@@ -11,6 +11,7 @@ const AddBlog = () => {
   const navigate = useNavigate()
   const [data,setData] = useState({
     title: '',
+    author : '',
     descripton : '',
     image : '',
     subtitle : '',
