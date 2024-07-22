@@ -12,10 +12,12 @@ const AddBlog = () => {
   const [data,setData] = useState({
     title: '',
     author : '',
+    price : '',
+    isbnNumber : '',
+    genre : '',
     descripton : '',
     image : '',
-    subtitle : '',
-    category : ''
+    
   })
 const handleChange = (e)=>{
 
@@ -85,7 +87,7 @@ Swal.fire({
                       <label className="leading-loose">Book Title</label>
                       <input
                         type="text"
-                        className="px-4 py-2 border bg-[#f2f2f2]  focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-900"
+                        className="px-4 py-2 border bg-[#f2f2f294]  focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                         placeholder="Book title"
                         onChange={handleChange}
                       />
@@ -93,12 +95,12 @@ Swal.fire({
                    
                     <div className="flex items-center space-x-4">
                       <div className="flex flex-col">
-                        <label className="leading-loose">Book Subtitle</label>
+                        <label className="leading-loose">Book Author</label>
                         <div className="relative focus-within:text-gray-600 text-gray-400">
                           <input
                             type="text"
-                            className="pr-4 pl-10 bg-[#f2f2f2] py-2 border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-900"
-                            placeholder="Subtitle"
+                            className="pr-4 pl-10 bg-[#f2f2f294] py-2 border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
+                            placeholder="author"
                             onChange={handleChange}
 
                           />
@@ -106,12 +108,39 @@ Swal.fire({
                         </div>
                       </div>
                       <div className="flex flex-col">
-                        <label className="leading-loose">Category</label>
+                        <label className="leading-loose">Genre</label>
                         <div className="relative focus-within:text-gray-600 text-gray-400">
                           <input
                             type="text"
-                            className="pr-4 pl-10 py-2 bg-[#f2f2f2] border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-900"
-                            placeholder="Category"
+                            className="pr-4 pl-10 py-2 bg-[#f2f2f294] border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
+                            placeholder="genre"
+                            onChange={handleChange}
+
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-4">
+                      <div className="flex flex-col">
+                        <label className="leading-loose">isbn Number</label>
+                        <div className="relative focus-within:text-gray-600 text-gray-400">
+                          <input
+                            type="number"
+                            className="pr-4 pl-10 bg-[#f2f2f294] py-2 border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black "
+                            placeholder="isbn Number"
+                            onChange={handleChange}
+
+                          />
+                         
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <label className="leading-loose">Price (Rs.)</label>
+                        <div className="relative focus-within:text-gray-600 text-gray-400">
+                          <input
+                            type="number"
+                            className="pr-4 pl-10 py-2 bg-[#f2f2f294] border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
+                            placeholder="price"
                             onChange={handleChange}
 
                           />
@@ -122,13 +151,13 @@ Swal.fire({
                       <label className="leading-loose">Book Description</label>
                       <textarea rows={5}
                         type="text"
-                        className="px-4 py-2 border bg-[#f2f2f2] focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
+                        className="px-4 py-2 border bg-[#f2f2f294] focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                         placeholder="Book description"
                         onChange={handleChange}
 
                       />
                        <input
-                class="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                class="w-full bg-[#f2f2f294] text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                 type="file"
               />
                     </div>

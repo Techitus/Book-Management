@@ -61,7 +61,7 @@ const Form = ({ type, onSubmit, user }) => {
               <input
                 type="text"
                 required
-                name="name"
+                name="username"
                 className="main-input"
                 onChange={handleChange}
               />
@@ -76,7 +76,7 @@ const Form = ({ type, onSubmit, user }) => {
             <input
               type="email"
               required
-              name="name"
+              name="email"
               className="main-input "
               onChange={handleChange}
             />
@@ -90,7 +90,7 @@ const Form = ({ type, onSubmit, user }) => {
             <input
               type="password"
               required
-              name="name"
+              name="password"
               className="main-input"
               onChange={handleChange}
             />

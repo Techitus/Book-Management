@@ -99,7 +99,7 @@ navigate('/login')
     <path fill="white" d="M10 11H2.048c.502-5.053 4.765-9 9.95-9c5.523 0 10 4.477 10 10s-4.477 10-10 10c-5.185 0-9.448-3.947-9.95-9h7.95v3l5-4l-5-4z" />
   </svg> 
   <span className="group-hover:text-white z-50">Logout</span>
-  <span className="absolute top-0 -left-2 w-0 h-full bg-[#42ff1c] rounded transition-all duration-300 origin-left group-hover:w-full"></span>
+  <span className="absolute top-0 -left-2 w-0 h-full bg-[#318820] rounded transition-all duration-300 origin-left group-hover:w-full"></span>
 </div>
            
 
@@ -113,7 +113,7 @@ navigate('/login')
     <path fill="white" d="M10 11H2.048c.502-5.053 4.765-9 9.95-9c5.523 0 10 4.477 10 10s-4.477 10-10 10c-5.185 0-9.448-3.947-9.95-9h7.95v3l5-4l-5-4z" />
   </svg> 
   <span className="group-hover:text-white z-50">Login</span>
-  <span className="absolute top-0 -left-2 w-0 h-full bg-[#42ff1c] rounded transition-all duration-300 origin-left group-hover:w-full"></span>
+  <span className="absolute top-0 -left-2 w-0 h-full bg-[#359921] rounded transition-all duration-300 origin-left group-hover:w-full"></span>
 </Link>
            
 

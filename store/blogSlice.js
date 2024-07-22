@@ -38,7 +38,7 @@ export function createBlog(data){
     return async function createBlogThunk(dispatch){
      dispatch(setStatus(STATUSES.LOADING)) 
      try {
-        const response =   await API.post('blog',data)
+        const response =   await API.post('http://localhost:3000/book/',data)
         if(response.status === 201){
             dispatch(setStatus(STATUSES.SUCCESS))
         }else{
@@ -70,7 +70,7 @@ export function fetchSingleBlog(id){
     return async function fetchSingleBlogThunk(dispatch){
         dispatch(setStatus(STATUSES.LOADING))
         try {
-            const response = await API.get(`blog/${id}`)
+            const response = await API.get(`http://localhost:3000/book/${id}`)
             if(response.status === 200){
                 dispatch(setInputData(response.data.data))
                 dispatch(setStatus(STATUSES.SUCCESS))

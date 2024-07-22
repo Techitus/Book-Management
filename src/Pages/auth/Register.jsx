@@ -14,7 +14,6 @@ const Register = () => {
     const navigate = useNavigate()
     const handleSubmit = (data)=>{
       dispatch(register(data))
-      console.log(data)
     }
     useEffect(()=>{
       if(status === STATUSES.SUCCESS)
