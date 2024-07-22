@@ -7,7 +7,7 @@ const blogSlice = createSlice({
     initialState : {
         inputData :[],
         status : null,
-        deleteStatus : null,
+        deleteStatus : false,
         editStatus : null
 
     },
@@ -23,12 +23,25 @@ const blogSlice = createSlice({
         },
         setEditStatus(state,action){
             state.editStatus = action.payload
-        }
-    }
+        },
+        resetDeleteStatus: (state) => {
+            state.deleteStatus = false;
+          }
+    },
+    extraReducers: (builder) => {
+        builder
+          // eslint-disable-next-line no-unused-vars
+          .addCase(deleteBLog.fulfilled, (state,action) => {
+            state.deleteStatus = true;
+          })
+          .addCase(fetchSingleBlog.fulfilled, (state, action) => {
+            state.inputData = action.payload;
+          });
+      },
     
 })
 
-export const {setInputData,setStatus, setDeleteStatus,setEditStatus} = blogSlice.actions
+export const {setInputData,setStatus, setDeleteStatus,setEditStatus, resetDeleteStatus} = blogSlice.actions 
 
 
 

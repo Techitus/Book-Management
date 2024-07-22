@@ -9,7 +9,7 @@ import Navbar from "../../components/Navbar";
 import { Rating } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { deleteBLog, fetchSingleBlog } from "../../../store/blogSlice";
+import { deleteBLog, fetchSingleBlog, resetDeleteStatus } from "../../../store/blogSlice";
 
 const SingleBlog = () => {
   const navigate = useNavigate()
@@ -24,15 +24,15 @@ const SingleBlog = () => {
   const handledeleteBook = ()=>{
     dispatch(deleteBLog(id))
   }
-  useEffect(() => {
-    if (deleteStatus === true) {
-      toast.success("Book Deleted Successfully");
-      setTimeout(() => {
-        navigate('/');
-      }, 2000); 
-    }
-  }, [deleteStatus, navigate]);
-
+ useEffect(() =>{
+   if(deleteStatus===true){
+     toast.success("Book Deleted Successfully")
+     setTimeout(()=>{
+      dispatch(resetDeleteStatus())
+    navigate('/')
+     },2000)
+   }
+ },[deleteStatus,navigate,dispatch])
   return (
     <>
       <Navbar />
