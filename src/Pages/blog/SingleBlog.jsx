@@ -2,21 +2,36 @@
 /* eslint-disable no-undef */
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "../../components/Navbar";
 import { Rating } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchSingleBlog } from "../../../store/blogSlice";
+import { deleteBLog, fetchSingleBlog } from "../../../store/blogSlice";
 
 const SingleBlog = () => {
+  const navigate = useNavigate()
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { inputData } = useSelector((state) => state.blog);
+  const { inputData, deleteStatus } = useSelector((state) => state.blog);
 
   useEffect(() => {
     dispatch(fetchSingleBlog(id));
   }, [id]);
+
+  const handledeleteBook = ()=>{
+    dispatch(deleteBLog(id))
+  }
+  useEffect(() => {
+    if (deleteStatus === true) {
+      toast.success("Book Deleted Successfully");
+      setTimeout(() => {
+        navigate('/');
+      }, 2000); 
+    }
+  }, [deleteStatus, navigate]);
 
   return (
     <>
@@ -119,8 +134,8 @@ const SingleBlog = () => {
                     <span className="group-hover:text-white z-50">Edit</span>
                     <span className="absolute top-0 -left-2 w-0 h-full bg-[#34a11f] rounded transition-all duration-300 origin-left group-hover:w-full"></span>
                   </Link>
-                  <Link
-                    to={"/blog/delete/:id"}
+                  <button
+                  onClick={handledeleteBook}
                     className="flex ml-auto relative bg-transparent space-x-2 text-red-700 font-semibold py-2 px-4 border border-[#e63629] rounded overflow-hidden group"
                   >
                     <svg
@@ -138,13 +153,14 @@ const SingleBlog = () => {
                     </svg>
                     <span className="group-hover:text-white z-50">Delete</span>
                     <span className="absolute top-0 -left-2 w-0 h-full bg-[#8a2626] rounded transition-all duration-300 origin-left group-hover:w-full"></span>
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <ToastContainer />
     </>
   );
 };

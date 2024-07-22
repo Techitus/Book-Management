@@ -88,7 +88,7 @@ export function deleteBLog(id){
     return async function deleteBlogThunk(dispatch){
         dispatch(setStatus(STATUSES.LOADING))
         try{
-           const response = await API.delete(`blog/${id}`)
+           const response = await API.delete(`http://localhost:3000/book/${id}`)
            if(response.status === 200){
             dispatch(setDeleteStatus(true))
            
