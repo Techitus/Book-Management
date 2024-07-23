@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Home from "./Home";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import { createBlog } from "../../../store/blogSlice";
-import Swal from "sweetalert2";
 const AddBlog = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -16,9 +17,10 @@ const AddBlog = () => {
     isbnNumber : '',
     genre : '',
     descripton : '',
-    image : '',
+    image : null,
     
-  })
+  }
+)
 const handleChange = (e)=>{
 
   const {name, value} = e.target
@@ -30,16 +32,12 @@ const handleChange = (e)=>{
 }
 //create Blog
 const handleSubmit = (e)=>{
-  e.preventDefault()
+  e.preventDefault(),
 dispatch(createBlog(data))
-Swal.fire({
-  position: "top-end",
-  icon: "success",
-  title: "Blog Add Sucessfully",
-  showConfirmButton: false,
-  timer: 3000
-});
+toast.success("Book Added Sucessfully")
+setTimeout(()=>{
   navigate('/')
+}, 2000)
 }
 
   return (
@@ -90,6 +88,7 @@ Swal.fire({
                         className="px-4 py-2 border bg-[#f2f2f294]  focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                         placeholder="Book title"
                         onChange={handleChange}
+                        name="title"
                       />
                     </div>
                    
@@ -101,6 +100,7 @@ Swal.fire({
                             type="text"
                             className="pr-4 pl-10 bg-[#f2f2f294] py-2 border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                             placeholder="author"
+                            name="author"
                             onChange={handleChange}
 
                           />
@@ -114,6 +114,7 @@ Swal.fire({
                             type="text"
                             className="pr-4 pl-10 py-2 bg-[#f2f2f294] border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                             placeholder="genre"
+                            name="genre"
                             onChange={handleChange}
 
                           />
@@ -128,6 +129,7 @@ Swal.fire({
                             type="number"
                             className="pr-4 pl-10 bg-[#f2f2f294] py-2 border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black "
                             placeholder="isbn Number"
+                            name="isbnNumber"
                             onChange={handleChange}
 
                           />
@@ -141,6 +143,7 @@ Swal.fire({
                             type="number"
                             className="pr-4 pl-10 py-2 bg-[#f2f2f294] border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                             placeholder="price"
+                            name="price"
                             onChange={handleChange}
 
                           />
@@ -153,12 +156,15 @@ Swal.fire({
                         type="text"
                         className="px-4 py-2 border bg-[#f2f2f294] focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                         placeholder="Book description"
+                        name="descripton"
                         onChange={handleChange}
 
                       />
                        <input
                 class="w-full bg-[#f2f2f294] text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                 type="file"
+                name="image"
+                onChange={handleChange}
               />
                     </div>
                   </div>
@@ -191,6 +197,7 @@ Swal.fire({
         </div>
         </form>
       </div>
+      <ToastContainer />
     </>
   );
 };

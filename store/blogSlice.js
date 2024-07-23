@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {  createSlice } from "@reduxjs/toolkit";
 import STATUSES from "../src/global/statuses/statuses";
 import API from "../src/http";
+
 
 const blogSlice = createSlice({
     name : 'blog',
@@ -28,16 +29,6 @@ const blogSlice = createSlice({
             state.deleteStatus = false;
           }
     },
-    extraReducers: (builder) => {
-        builder
-          // eslint-disable-next-line no-unused-vars
-          .addCase(deleteBLog.fulfilled, (state,action) => {
-            state.deleteStatus = true;
-          })
-          .addCase(fetchSingleBlog.fulfilled, (state, action) => {
-            state.inputData = action.payload;
-          });
-      },
     
 })
 
@@ -51,7 +42,12 @@ export function createBlog(data){
     return async function createBlogThunk(dispatch){
      dispatch(setStatus(STATUSES.LOADING)) 
      try {
-        const response =   await API.post('http://localhost:3000/book/',data)
+        const response =   await API.post('http://localhost:3000/book/',data,{
+            headers : {
+                'Content-Type' : 'multipart/form-data',
+                Accept : 'multipart/form-data',
+            }
+        })
         if(response.status === 201){
             dispatch(setStatus(STATUSES.SUCCESS))
         }else{
@@ -79,40 +75,37 @@ export function fetchBlog(){
     }
 }
  
-export function fetchSingleBlog(id){
-    return async function fetchSingleBlogThunk(dispatch){
-        dispatch(setStatus(STATUSES.LOADING))
+export function fetchSingleBlog(id) {
+    return async function fetchSingleBlogThunk(dispatch) {
+        dispatch(setStatus(STATUSES.LOADING));
         try {
-            const response = await API.get(`http://localhost:3000/book/${id}`)
-            if(response.status === 200){
-                dispatch(setInputData(response.data.data))
-                dispatch(setStatus(STATUSES.SUCCESS))
-            }else{
-                dispatch(setStatus(STATUSES.ERROR))
+            const response = await API.get(`http://localhost:3000/book/${id}`);
+            if (response.status === 200) {
+                dispatch(setInputData(response.data.data));
+                dispatch(setStatus(STATUSES.SUCCESS));
+            } else {
+                dispatch(setStatus(STATUSES.ERROR));
             }
-
-        }catch(error){
-            dispatch(setStatus(STATUSES.ERROR))
+        } catch (error) {
+            dispatch(setStatus(STATUSES.ERROR));
         }
-    }
+    };
 }
 
-export function deleteBLog(id){
-    return async function deleteBlogThunk(dispatch){
-        dispatch(setStatus(STATUSES.LOADING))
-        try{
-           const response = await API.delete(`http://localhost:3000/book/${id}`)
-           if(response.status === 200){
-            dispatch(setDeleteStatus(true))
-           
-        }else{
-            dispatch(setDeleteStatus(null))
-           }
-        }catch(error){
-            dispatch(setDeleteStatus(false))
+export function deleteBLog(id) {
+    return async function deleteBlogThunk(dispatch) {
+        dispatch(setStatus(STATUSES.LOADING));
+        try {
+            const response = await API.delete(`http://localhost:3000/book/${id}`);
+            if (response.status === 200) {
+                dispatch(setDeleteStatus(true));
+            } else {
+                dispatch(setDeleteStatus(null));
+            }
+        } catch (error) {
+            dispatch(setDeleteStatus(false));
         }
-    }
-
+    };
 }
 
 export function editBlog(id,data){
