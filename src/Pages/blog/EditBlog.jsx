@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate, useParams,  } from "react-router-dom"
 import { editBlog, fetchSingleBlog, setEditStatus } from "../../../store/blogSlice"
+import Navbar from "../../components/Navbar"
 
  
  
@@ -13,58 +14,67 @@ import { editBlog, fetchSingleBlog, setEditStatus } from "../../../store/blogSli
     const {inputData, editStatus} = useSelector((state)=>state.blog)
     const [data,setData] = useState({
         title: '',
-        descripton : '',
-        image : '',
-        subtitle : '',
-        category : ''
+        author: '',
+        image: null,
+        description: '',
+        genre: '',
+        isbnNumber:'',
+        price: ''
       }
     )
     useEffect(()=>{
         dispatch(fetchSingleBlog(id))
-    },[id])
+    },[id, dispatch])
 
     useEffect(()=>{
         if(inputData){
+          console.log(inputData)
             setData({
-                title: inputData.title,
-                descripton : inputData.descripton,
-                image : inputData.image,
-                subtitle : inputData.subtitle,
-                category : inputData.category
-            })
+                title: inputData.title || '',
+                description: inputData.description || '',
+                image : inputData.image || null,
+                author : inputData.author || '',
+                isbnNumber: inputData.isbnNumber || '',
+                genre : inputData.genre || '',
+                price : inputData.price || ''
+               
+            },[inputData])
         }
     },[inputData])
     const handleChange = (e) => {
-      const { name, value } = e.target;
-      setData({
-        ...data,
-        [name]: name === 'image' ? e.target.files[0] : value
-      });
-    }
+      const { name, value, files } = e.target;
+      setData((prevData) => ({
+        ...prevData,
+        [name]: name === 'image' ? files[0] : value
+      }));
+    };
     const handleEditSubmit = (e) => {
       e.preventDefault()
   
       const formData = new FormData();
       formData.append('title', data.title);
-      formData.append('descripton', data.descripton);
-      formData.append('subtitle', data.subtitle);
-      formData.append('category', data.category);
+      formData.append('description', data.description);
+      formData.append('author', data.author);
+      formData.append('isbnNumber', data.isbnNumber);
+      formData.append('genre', data.genre);
+      formData.append('price', data.price);
       if (data.image) {
         formData.append('image', data.image);
       }
   
-      dispatch(editBlog({ formData, id }));
+      dispatch(editBlog( id, formData ));
     }
   
     useEffect(()=>{
         if(editStatus === true){
             dispatch(setEditStatus(null))
-            navigate(`/blog/${id}`)
+            navigate('/')
         }
 
-    },[editStatus])
+    },[editStatus, dispatch, id, navigate])
    return (
 <>
+<Navbar/>
 <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 ">
       <form onSubmit={handleEditSubmit} >
         <div className="">
@@ -106,37 +116,71 @@ import { editBlog, fetchSingleBlog, setEditStatus } from "../../../store/blogSli
                       <label className="leading-loose">Book Title</label>
                       <input
                         type="text"
-                        className="px-4 py-2 border bg-[#f2f2f2]  focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-900"
+                        className="px-4 py-2 border bg-[#f2f2f294]  focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                         placeholder="Book title"
                         onChange={handleChange}
+                        name="title"
                         value={data.title}
                       />
                     </div>
                    
                     <div className="flex items-center space-x-4">
                       <div className="flex flex-col">
-                        <label className="leading-loose">Book Subtitle</label>
+                        <label className="leading-loose">Book Author</label>
                         <div className="relative focus-within:text-gray-600 text-gray-400">
                           <input
                             type="text"
-                            className="pr-4 pl-10 bg-[#f2f2f2] py-2 border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-900"
-                            placeholder="Subtitle"
+                            className="pr-4 pl-10 bg-[#f2f2f294] py-2 border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
+                            placeholder="author"
+                            name="author"
+                            value={data.author}
                             onChange={handleChange}
-                            value={data.subtitle}
 
                           />
                          
                         </div>
                       </div>
                       <div className="flex flex-col">
-                        <label className="leading-loose">Category</label>
+                        <label className="leading-loose">Genre</label>
                         <div className="relative focus-within:text-gray-600 text-gray-400">
                           <input
                             type="text"
-                            className="pr-4 pl-10 py-2 bg-[#f2f2f2] border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-900"
-                            placeholder="Category"
+                            className="pr-4 pl-10 py-2 bg-[#f2f2f294] border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
+                            placeholder="genre"
+                            name="genre"
+                            value={data.genre}
                             onChange={handleChange}
-                            value={data.category}
+
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-4">
+                      <div className="flex flex-col">
+                        <label className="leading-loose">isbn Number</label>
+                        <div className="relative focus-within:text-gray-600 text-gray-400">
+                          <input
+                            type="number"
+                            className="pr-4 pl-10 bg-[#f2f2f294] py-2 border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black "
+                            placeholder="isbn Number"
+                            name="isbnNumber"
+                            value={data.isbnNumber}
+                            onChange={handleChange}
+
+                          />
+                         
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <label className="leading-loose">Price (Rs.)</label>
+                        <div className="relative focus-within:text-gray-600 text-gray-400">
+                          <input
+                            type="number"
+                            className="pr-4 pl-10 py-2 bg-[#f2f2f294] border focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
+                            placeholder="price"
+                            name="price"
+                            value={data.price}
+                            onChange={handleChange}
 
                           />
                         </div>
@@ -146,15 +190,18 @@ import { editBlog, fetchSingleBlog, setEditStatus } from "../../../store/blogSli
                       <label className="leading-loose">Book Description</label>
                       <textarea rows={5}
                         type="text"
-                        className="px-4 py-2 border bg-[#f2f2f2] focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
+                        className="px-4 py-2 border bg-[#f2f2f294] focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                         placeholder="Book description"
+                        name="descripton"
+                        value={data.description}
                         onChange={handleChange}
-                        value={data.descripton}
 
                       />
                        <input
-                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                className="w-full bg-[#f2f2f294] text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                 type="file"
+                name="image"
+                onChange={handleChange}
               />
                     </div>
                   </div>

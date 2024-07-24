@@ -112,7 +112,7 @@ const SingleBlog = () => {
                 </span>
                 <div className="flex ml-52 gap-10">
                   <Link
-                    to={"/blog/edit/:id"}
+                    to={`/blog/edit/${id}`}
                     className="flex ml-auto relative bg-transparent space-x-2 text-[#42ff1c] font-semibold py-2 px-4 border border-[#42ff1c] rounded overflow-hidden group"
                   >
                     <svg

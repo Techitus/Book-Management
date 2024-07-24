@@ -16,7 +16,7 @@ const AddBlog = () => {
     price : '',
     isbnNumber : '',
     genre : '',
-    descripton : '',
+    description : '',
     image : null,
     
   }
@@ -156,7 +156,7 @@ setTimeout(()=>{
                         type="text"
                         className="px-4 py-2 border bg-[#f2f2f294] focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                         placeholder="Book description"
-                        name="descripton"
+                        name="description"
                         onChange={handleChange}
 
                       />

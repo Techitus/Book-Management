@@ -112,7 +112,7 @@ export function editBlog(id,data){
     return async function editBlogThunk(dispatch){
         dispatch(setStatus(STATUSES.LOADING) )
         try {
-            const response = await API.patch(`blog/${id}`,data)
+            const response = await API.patch(`http://localhost:3000/book/${id}`,data)
             if (response.status === 200){
                 dispatch(setEditStatus(true))
             }
