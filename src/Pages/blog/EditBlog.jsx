@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate, useParams,  } from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import { editBlog, fetchSingleBlog, setEditStatus } from "../../../store/blogSlice"
 import Navbar from "../../components/Navbar"
 
@@ -28,7 +30,6 @@ import Navbar from "../../components/Navbar"
 
     useEffect(()=>{
         if(inputData){
-          console.log(inputData)
             setData({
                 title: inputData.title || '',
                 description: inputData.description || '',
@@ -68,7 +69,11 @@ import Navbar from "../../components/Navbar"
     useEffect(()=>{
         if(editStatus === true){
             dispatch(setEditStatus(null))
-            navigate('/')
+toast.success('Blog Updated Successfully')
+setTimeout(()=>{
+    navigate(`/blog/${id}`)
+},2000)
+
         }
 
     },[editStatus, dispatch, id, navigate])
@@ -189,10 +194,10 @@ import Navbar from "../../components/Navbar"
                     <div className="flex flex-col">
                       <label className="leading-loose">Book Description</label>
                       <textarea rows={5}
-                        type="text"
+                        type="text" 
                         className="px-4 py-2 border bg-[#f2f2f294] focus:ring-[#42ff1c] focus:border-[#42ff1c] w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-black"
                         placeholder="Book description"
-                        name="descripton"
+                        name="description" 
                         value={data.description}
                         onChange={handleChange}
 
@@ -234,6 +239,7 @@ import Navbar from "../../components/Navbar"
         </div>
         </form>
       </div>
+      <ToastContainer />
 </>
    )
  }
