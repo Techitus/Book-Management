@@ -81,7 +81,7 @@ const Form = ({ type, onSubmit, user, emailError, passwordError }) => {
                             onChange={handleChange}
             />
             <span className="highlight-span"></span>
-            <label className="label-input error">{emailError ? 'Invalid Email' : 'Email'}</label>
+            <label className="label-input error">Email</label>
           </div>
         </div>
 
@@ -95,7 +95,7 @@ const Form = ({ type, onSubmit, user, emailError, passwordError }) => {
                 onChange={handleChange}
             />
             <span className="highlight-span"></span>
-            <label className="label-input error">{passwordError ? 'Invalid Password' : 'Password'}</label>
+            <label className="label-input error">Password</label>
           </div>
         </div>
 
