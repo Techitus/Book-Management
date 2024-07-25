@@ -4,7 +4,7 @@
 import { Link } from "react-router-dom";
 import "./Form.css";
 import { useState } from "react";
-const Form = ({ type, onSubmit, user }) => {
+const Form = ({ type, onSubmit, user, emailError, passwordError }) => {
   const [data, setData] = useState({
     username: "",
     email: "",
@@ -77,11 +77,11 @@ const Form = ({ type, onSubmit, user }) => {
               type="email"
               required
               name="email"
-              className="main-input "
-              onChange={handleChange}
+              className={`main-input ${emailError ? 'error' : ''}`}
+                            onChange={handleChange}
             />
             <span className="highlight-span"></span>
-            <label className="label-input">Email</label>
+            <label className="label-input error">{emailError ? 'Invalid Email' : 'Email'}</label>
           </div>
         </div>
 
@@ -91,11 +91,11 @@ const Form = ({ type, onSubmit, user }) => {
               type="password"
               required
               name="password"
-              className="main-input"
-              onChange={handleChange}
+              className={`main-input ${passwordError ? 'error' : ''}`}            
+                onChange={handleChange}
             />
             <span className="highlight-span"></span>
-            <label className="label-input">Password</label>
+            <label className="label-input error">{passwordError ? 'Invalid Password' : 'Password'}</label>
           </div>
         </div>
 

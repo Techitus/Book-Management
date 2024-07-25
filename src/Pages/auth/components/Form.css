@@ -44,7 +44,12 @@
     background: transparent;
     color: #ffffff;
    } 
-  
+.main-input.error {
+  border-color: red;
+}
+.label-input.error-label {
+  color: red;
+}
    
   .main-input:focus {
     outline: none;

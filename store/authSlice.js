@@ -18,10 +18,16 @@ const authSlice = createSlice({
         }, 
         setStatus(state,action){
             state.status= action.payload
+        },
+        resetAuthStatus(state){
+            state.status = null,
+            state.user = null,
+            state.token = null
         }
+
     }
 })
-export const {setToken, setUser, setStatus} =  authSlice.actions;
+export const {setToken, setUser, setStatus, resetAuthStatus} =  authSlice.actions;
 export default authSlice.reducer
 
     
@@ -35,6 +41,7 @@ export function register(data){
                dispatch(setStatus(STATUSES.SUCCESS))
            }else{
             dispatch(setStatus(STATUSES.ERROR))
+
            }
         }catch(error){
             dispatch(setStatus(STATUSES.ERROR))
