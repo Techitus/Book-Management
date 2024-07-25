@@ -23,7 +23,7 @@ const Home = () => {
 </div>
 <div className="flex justify-between flex-wrap mt-6 mx-10 ">
 
-{Array.isArray(inputData) && inputData.map((data)=>{
+{Array.isArray(inputData) && inputData.slice().reverse().map((data)=>{
     return <Card key = {data.id} data ={data} />
     
   })
