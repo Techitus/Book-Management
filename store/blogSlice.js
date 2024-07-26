@@ -9,7 +9,8 @@ const blogSlice = createSlice({
         inputData :[],
         status : null,
         deleteStatus : false,
-        editStatus : null
+        editStatus : null,
+        rating : null
 
     },
     reducers : {
@@ -27,12 +28,15 @@ const blogSlice = createSlice({
         },
         resetDeleteStatus: (state) => {
             state.deleteStatus = false;
-          }
+          },
+        setRating(state,action){
+            state.rating = action.payload
     },
+}
     
 })
 
-export const {setInputData,setStatus, setDeleteStatus,setEditStatus, resetDeleteStatus} = blogSlice.actions 
+export const {setInputData,setStatus, setDeleteStatus,setEditStatus, resetDeleteStatus, setRating} = blogSlice.actions 
 
 
 
@@ -83,6 +87,7 @@ export function fetchSingleBlog(id) {
             if (response.status === 200) {
                 dispatch(setInputData(response.data.data));
                 dispatch(setStatus(STATUSES.SUCCESS));
+                dispatch(setRating(response.data.data.rating || null))
             } else {
                 dispatch(setStatus(STATUSES.ERROR));
             }

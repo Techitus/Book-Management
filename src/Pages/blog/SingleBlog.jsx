@@ -1,24 +1,21 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-/* eslint-disable react-hooks/exhaustive-deps */
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "../../components/Navbar";
-import { Rating } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { deleteBLog, fetchSingleBlog, resetDeleteStatus } from "../../../store/blogSlice";
-
+import { Rating } from 'react-simple-star-rating'
+import { useEffect, useState} from "react";
+import { deleteBLog, fetchSingleBlog, resetDeleteStatus} from "../../../store/blogSlice";
 const SingleBlog = () => {
+  const [rating, setRating] = useState(0)
   const navigate = useNavigate()
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { inputData, deleteStatus } = useSelector((state) => state.blog);
-
+  const { inputData, deleteStatus} = useSelector((state) => state.blog);
   useEffect(() => {
     dispatch(fetchSingleBlog(id));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const handledeleteBook = ()=>{
@@ -33,6 +30,16 @@ const SingleBlog = () => {
      },2000)
    }
  },[deleteStatus,navigate,dispatch])
+ const handleRating = (rate) => {
+  setRating(rate);
+
+  // other logic
+};
+
+// Optional callback functions
+
+
+
   return (
     <>
       <Navbar />
@@ -79,12 +86,18 @@ const SingleBlog = () => {
               </div>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="flex items-center">
-                  <Rating className="flex text-yellow-600" value={0} />
+                <div className='App'>
+      <Rating
+        onClick={handleRating}
+        
+        /* Available Props */
+      />
+    </div>
                 </div>
                 <div className="flex ml-6 items-center">
                   <div className="absolute">
-                    <button
-                      className="relative text-white px-4 w-auto h-10 bg-[#42ff1c93] rounded-full hover:bg-[#42ff1c4d] active:shadow-lg shadow transition ease-in duration-200 focus:outline-none group"
+                    <button  type="submit"
+                                         className="relative text-white px-4 w-auto h-10 bg-[#42ff1c93] rounded-full hover:bg-[#42ff1c4d] active:shadow-lg shadow transition ease-in duration-200 focus:outline-none group"
                     >
                       <svg
                         className="w-6 h-6 inline-block mr-1"
@@ -100,8 +113,9 @@ const SingleBlog = () => {
                         />
                       </svg>
                       <span className="absolute -mt-16 inset-0 flex items-center text-sm justify-center text-yellow-500 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-2 transition-all duration-300">
-                        Submit
+                       Submit
                       </span>
+                     
                     </button>
                   </div>
                 </div>
