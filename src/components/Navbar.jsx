@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 /* eslint-disable react/no-unknown-property */
-const Navbar = ({openForm}) => {
+const Navbar = ({openForm, onSearch}) => {
   const navigate = useNavigate()
   const {token:user} = useSelector((state)=> state.auth)
   const [isLoggedin, setIsLoggedin] = useState(false)
-  
+  const [search, setSearch] = useState('')
 
   useEffect(()=>{
     const token = localStorage.getItem('token')
@@ -21,13 +21,23 @@ navigate('/login')
 
  }  
 
+ const handleSearchChange = (e)=>{
+  setSearch(e.target.value)
+onSearch(e.target.value)
+
+ }
+ const resetSearchValue = ()=>{
+  setSearch('')
+  onSearch('')
+ }
+
   return (
       <>
           <nav className="flex justify-between sticky top-0 px-20 py-10 items-center h-full w-full bg-black border border-gray-100 z-50">
               <h1 className="text-2xl text-white font-bold sm:ml-0 flex gap-2">B<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1.2em" viewBox="0 0 24 24"><path fill="#42ff1c" d="M12.088 4.82a10 10 0 0 1 9.412.314a1 1 0 0 1 .493.748L22 6v13a1 1 0 0 1-1.5.866a8 8 0 0 0-8 0a1 1 0 0 1-1 0a8 8 0 0 0-7.733-.148l-.327.18l-.103.044l-.049.016l-.11.026l-.061.01L3 20h-.042l-.11-.012l-.077-.014l-.108-.032l-.126-.056l-.095-.056l-.089-.067l-.06-.056l-.073-.082l-.064-.089l-.022-.036l-.032-.06l-.044-.103l-.016-.049l-.026-.11l-.01-.061l-.004-.049L2 19V6a1 1 0 0 1 .5-.866a10 10 0 0 1 9.412-.314l.088.044z"/></svg>M</h1>
               <div className="flex items-center">
                   <Link to={'/blog/add'} onClick={openForm}    className="hover:opacity-70 w-6 h-6 mr-6 cursor-pointer">
-                      <svg   xmlns="http://www.w3.org/2000/svg" width="1.7rem" height="1.7rem" viewBox="0 0 48 48">
+                      <svg  xmlns="http://www.w3.org/2000/svg" width="1.7rem" height="1.7rem" viewBox="0 0 48 48">
                           <g fill="none" stroke="#42ff1c" stroke-linejoin="round" stroke-width="4">
                               <path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z" />
                               <path stroke-linecap="round" d="M24 16v16m-8-8h16" />
@@ -40,11 +50,14 @@ navigate('/login')
                           id="username"
                           type="text"
                           placeholder="Search..."
+                          value={search}
+                          onChange={handleSearchChange}
                       />
             <div className="absolute right-0 inset-y-0 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="-ml-1 mr-3 h-5 w-5 text-gray-400 hover:text-gray-500"
+                onClick={resetSearchValue} 
+                className="-ml-1 mr-3 h-5 w-5 text-gray-400 hover:text-gray-500 cursor-pointer"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -60,7 +73,7 @@ navigate('/login')
             <div className="absolute left-0 inset-y-0 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 ml-3 text-gray-400 hover:text-gray-500"
+                className="h-6 w-6 ml-3 text-gray-400 hover:text-gray-500 "
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

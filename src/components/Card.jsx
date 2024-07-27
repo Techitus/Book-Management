@@ -9,7 +9,6 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
 const Card = ({ data }) => {
-  console.log(data);
   const currentTime = new Date().getTime();
   const createdTime = new Date(data.createdAt).getTime();
   const isHot = useMemo(() => {
