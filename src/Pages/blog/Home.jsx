@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/no-unknown-property */
@@ -38,7 +39,7 @@ const Home = () => {
 <div className="flex justify-between flex-wrap mt-6 mx-10 ">
   
 {Array.isArray(filteredData) && filteredData.slice().reverse().map((data)=>{
-    return <Card key = {data.id} data ={data} />
+    return <Card key = {data.id} data ={data}  />
     
   })
 }

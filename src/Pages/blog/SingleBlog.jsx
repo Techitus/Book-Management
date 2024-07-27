@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "../../components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { deleteBLog, fetchSingleBlog, resetDeleteStatus } from "../../../store/blogSlice";
+import { deleteBLog, fetchSingleBlog, resetDeleteStatus} from "../../../store/blogSlice";
 import Rating from "../../components/Rating";
 
 const SingleBlog = () => {

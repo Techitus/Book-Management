@@ -3,11 +3,11 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
-import Rating from "./Rating";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import Rating from "./Rating";
 
-const Card = ({ data }) => {
+const Card = ({ data}) => {
   const currentTime = new Date().getTime();
   const createdTime = new Date(data.createdAt).getTime();
   const isHot = useMemo(() => {
@@ -93,8 +93,8 @@ const Card = ({ data }) => {
                 {data.price}
               </span>
             </p>
-            <div className="flex items-center justify-between">
-              <Rating readonly   />
+            <div className="flex items-center justify-between float-right mb-5">
+              <Rating rating={data.rating} />
               <Link
                 to={`/blog/${data._id}`}
                 className="relative bg-transparent flex items-center space-x-2 text-red-950 font-semibold py-2 px-4 border border-[#42ff1c] rounded overflow-hidden group"

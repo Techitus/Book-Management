@@ -23,7 +23,7 @@ function App() {
       <Route path='/register' element={<Register/>}/>
       <Route path='/' element={<Home/>}/>
       <Route path = '/blog/add' element={<Protected><AddBlog/></Protected>}/>
-      <Route path = '/blog/:id' element={<SingleBlog/>}/>
+      <Route path = '/blog/:id' element={<Protected><SingleBlog/></Protected>}/>
       <Route path = '/blog/edit/:id' element={<Protected><EditBlog/></Protected>}/>
     </Routes>
     </BrowserRouter>
