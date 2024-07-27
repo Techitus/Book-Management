@@ -3,8 +3,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
-
-import { Rating } from "@material-tailwind/react";
+import Rating from "./Rating";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 
@@ -95,11 +94,7 @@ const Card = ({ data }) => {
               </span>
             </p>
             <div className="flex items-center justify-between">
-              <Rating
-                className="flex text-yellow-600"
-                value={data?.rating || 0}
-                readonly
-              />
+              <Rating readonly   />
               <Link
                 to={`/blog/${data._id}`}
                 className="relative bg-transparent flex items-center space-x-2 text-red-950 font-semibold py-2 px-4 border border-[#42ff1c] rounded overflow-hidden group"
