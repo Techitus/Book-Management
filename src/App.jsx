@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import './App.css';
-import Login from './Pages/auth/Login';
+const Login = lazy(() => import('./Pages/auth/Login'));
 import Register from './Pages/auth/Register';
 import store from '../store/store';
 import { Provider } from 'react-redux';
@@ -19,8 +19,14 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+        <Route
+            path='/login'
+            element={
+              <Suspense fallback={<div className='text-white '><Spinner/></div>}>
+                  <Login />
+              </Suspense>
+            }
+          />          <Route path='/register' element={<Register />} />
           <Route path='/' element={<Home />} />
           <Route
             path='/blog/add'

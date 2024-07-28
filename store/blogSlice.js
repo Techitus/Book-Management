@@ -46,7 +46,7 @@ export function createBlog(data){
     return async function createBlogThunk(dispatch){
      dispatch(setStatus(STATUSES.LOADING)) 
      try {
-        const response =   await API.post('http://localhost:3000/book/',data,{
+        const response =   await API.post('https://bookmania-f7be.onrender.com/book/',data,{
             headers : {
                 'Content-Type' : 'multipart/form-data',
                 Accept : 'multipart/form-data',
@@ -66,7 +66,7 @@ export function fetchBlog(){
     return async function fetchBlogThunk(dispatch){
      dispatch(setStatus(STATUSES.LOADING)) 
      try {
-        const response =   await API.get('http://localhost:3000/book/')
+        const response =   await API.get('https://bookmania-f7be.onrender.com/book/')
         if(response.status === 200 && response.data.data.length > 0){
             dispatch(setInputData(response.data.data))
             dispatch(setStatus(STATUSES.SUCCESS))
@@ -83,7 +83,7 @@ export function fetchSingleBlog(id) {
     return async function fetchSingleBlogThunk(dispatch) {
         dispatch(setStatus(STATUSES.LOADING));
         try {
-            const response = await API.get(`http://localhost:3000/book/${id}`);
+            const response = await API.get(`https://bookmania-f7be.onrender.com/book/${id}`);
             if (response.status === 200) {
                 dispatch(setInputData(response.data.data));
                 dispatch(setStatus(STATUSES.SUCCESS));
@@ -101,7 +101,7 @@ export function deleteBLog(id) {
     return async function deleteBlogThunk(dispatch) {
         dispatch(setStatus(STATUSES.LOADING));
         try {
-            const response = await API.delete(`http://localhost:3000/book/${id}`);
+            const response = await API.delete(`https://bookmania-f7be.onrender.com/book/${id}`);
             if (response.status === 200) {
                 dispatch(setDeleteStatus(true));
             } else {
@@ -117,7 +117,7 @@ export function editBlog(id,data){
     return async function editBlogThunk(dispatch){
         dispatch(setStatus(STATUSES.LOADING) )
         try {
-            const response = await API.patch(`http://localhost:3000/book/${id}`,data)
+            const response = await API.patch(`https://bookmania-f7be.onrender.com/book/${id}`,data)
             if (response.status === 200){
                 dispatch(setEditStatus(true))
             }
